@@ -1,4 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let username = import ../../shared/username.nix { };
+in {
   imports = [ ../../shared/fonts.nix ../../shared/nix.nix ];
   programs = { zsh = { enable = true; }; };
   system = {
@@ -6,6 +8,8 @@
     stateVersion = 5;
   };
   users = {
-    users = { ghapgood = (pkgs.callPackage ../../shared/user.nix { }).config; };
+    users = {
+      ${username} = (pkgs.callPackage ../../shared/user.nix { }).config;
+    };
   };
 }

@@ -1,10 +1,12 @@
-{ config, ... }: {
+{ config, ... }:
+let theme = (import ../theme.nix { }).theme;
+in {
   services.wob = {
     enable = true;
     settings = {
       "" = {
         anchor = "center left";
-        background_color = "${config.colors.dracula.background}";
+        background_color = "${theme.dracula.background}";
         bar_padding = 0;
         border_size = 2;
         height = 350;
@@ -13,16 +15,16 @@
         width = 22;
       };
       "style.volume" = {
-        bar_color = "${config.colors.dracula.green}";
-        border_color = "${config.colors.dracula.green}";
+        bar_color = "${theme.dracula.green}";
+        border_color = "${theme.dracula.green}";
       };
       "style.volume-mute" = {
-        bar_color = "${config.colors.dracula.green}";
-        border_color = "${config.colors.dracula.red}";
+        bar_color = "${theme.dracula.green}";
+        border_color = "${theme.dracula.red}";
       };
       "style.brightness" = {
-        bar_color = "${config.colors.dracula.orange}";
-        border_color = "${config.colors.dracula.orange}";
+        bar_color = "${theme.dracula.orange}";
+        border_color = "${theme.dracula.orange}";
       };
     };
     systemd = true;

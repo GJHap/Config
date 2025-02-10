@@ -1,5 +1,7 @@
 { pkgs, config, ... }:
-let wob_sock = "$XDG_RUNTIME_DIR/wob.sock";
+let
+  wob_sock = "$XDG_RUNTIME_DIR/wob.sock";
+  theme = (import ../theme.nix { }).theme;
 in {
   wayland.windowManager.sway = {
     config = rec {
@@ -17,7 +19,7 @@ in {
         focused = {
           background = "#285577";
           border = "#4c7899";
-          childBorder = "#${config.colors.dracula.purple}";
+          childBorder = "#${theme.dracula.purple}";
           indicator = "#2e9ef4";
           text = "#ffffff";
         };

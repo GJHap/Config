@@ -1,15 +1,17 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, ... }:
+let theme = (import ../theme.nix { }).theme;
+in {
   services.dunst = {
     enable = true;
     package = pkgs.dunst.override { withX11 = false; };
     settings = {
       global = {
-        background = "#${config.colors.dracula.background}";
+        background = "#${theme.dracula.background}";
         browser = "brave";
         corner_radius = 10;
         dmenu = "wofi -d -p dunst";
         font = "JetBrainsMono Nerd Font";
-        foreground = "#${config.colors.dracula.foreground}";
+        foreground = "#${theme.dracula.foreground}";
         frame_width = 0;
         height = 100;
         icon_path =
@@ -21,7 +23,7 @@
         width = "(350, 400)";
       };
       urgency_critical = {
-        foreground = "#${config.colors.dracula.red}";
+        foreground = "#${theme.dracula.red}";
         timeout = 0;
       };
     };

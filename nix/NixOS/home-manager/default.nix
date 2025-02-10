@@ -16,7 +16,6 @@
     ./waybar.nix
     ./wob.nix
     ./wofi.nix
-    ../options/colors.nix
     ../options/swayDisplayReloadFix.nix
     ../options/wofi-logout.nix
   ] ++ (if builtins.pathExists ./extras.nix then [ ./extras.nix ] else [ ]);

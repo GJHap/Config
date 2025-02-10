@@ -1,6 +1,8 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+let configPath = import ../../configPath.nix { };
+in {
   home.packages = with pkgs; [ lf ];
   xdg.configFile.lf = {
-    source = config.lib.file.mkOutOfStoreSymlink /home/ghapgood/dev/Config/lf;
+    source = config.lib.file.mkOutOfStoreSymlink "${configPath}/lf";
   };
 }

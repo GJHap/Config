@@ -1,4 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let username = import ./username.nix { };
+in {
   nix = {
     extraOptions = "experimental-features = nix-command flakes";
     gc = {
@@ -9,7 +11,7 @@
     package = pkgs.nixStable;
     settings = {
       auto-optimise-store = true;
-      allowed-users = [ "ghapgood" ];
+      allowed-users = [ username ];
     };
   };
 }

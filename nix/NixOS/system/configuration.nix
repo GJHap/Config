@@ -1,4 +1,6 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+let username = import ../../shared/username.nix { };
+in {
   imports = [
     ./hardware-configuration.nix
     ../../shared/fonts.nix
@@ -28,7 +30,7 @@
   };
   i18n.defaultLocale = "en_US.utf8";
   networking = {
-    hostName = "ghapgood";
+    hostName = username;
     networkmanager.enable = true;
   };
   programs = {
@@ -96,7 +98,7 @@
   time.timeZone = "America/Los_Angeles";
   users = {
     users = {
-      ghapgood = (pkgs.callPackage ../../shared/user.nix { }).config // {
+      ${username} = (pkgs.callPackage ../../shared/user.nix { }).config // {
         extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" ];
       };
     };

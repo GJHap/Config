@@ -14,7 +14,8 @@
   outputs = { self, home-manager, neovim-nightly-overlay, nix-darwin, nixpkgs }:
     let
       buildSystem = { basePath, systemFn, system, hmFn }:
-        systemFn {
+        let username = import shared/username.nix { };
+        in systemFn {
           inherit system;
           pkgs = import nixpkgs {
             inherit system;
@@ -28,7 +29,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                users.ghapgood = import "${self}/${basePath}/home-manager";
+                users.${username} = import "${self}/${basePath}/home-manager";
               };
             }
           ];

@@ -1,4 +1,6 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+let theme = (import ../theme.nix { }).theme;
+in {
   programs.waybar = {
     enable = true;
     systemd.enable = true;
@@ -22,7 +24,7 @@
             format = {
               months = "<span weight='bold' color='#ecc6d9'>{}</span>";
               today =
-                "<span weight='bold' color='#${config.colors.dracula.green}'>{}</span>";
+                "<span weight='bold' color='#${theme.dracula.green}'>{}</span>";
             };
             mode = "year";
             mode-mon-col = 3;
@@ -77,14 +79,14 @@
       }
 
       #waybar {
-         background: #${config.colors.dracula.background};
+         background: #${theme.dracula.background};
          border-radius: 10px;
       }
 
       .modules-left,
       .modules-right {
          border-radius: 10px;
-         background: alpha(#${config.colors.sway-module}, 0.7);
+         background: alpha(#${theme.sway-module}, 0.7);
       }
 
       #workspaces button {
@@ -92,16 +94,16 @@
       }
 
       #workspaces button:hover {
-         background: alpha(#${config.colors.sway-hover}, 0.6);
+         background: alpha(#${theme.sway-hover}, 0.6);
       }
 
       #workspaces button.focused {
-         color: #${config.colors.dracula.green};
+         color: #${theme.dracula.green};
       }
 
       #workspaces button.urgent,
       #network.disconnected {
-         color: #${config.colors.dracula.red};
+         color: #${theme.dracula.red};
       }
 
       #workspaces button,
@@ -111,7 +113,7 @@
       #pulseaudio {
          background: transparent;
          border-radius: 10px;
-         color: #${config.colors.dracula.foreground};
+         color: #${theme.dracula.foreground};
       }
 
       #clock,
@@ -122,12 +124,12 @@
       }
 
       #battery.charging {
-         color: #${config.colors.dracula.green};
+         color: #${theme.dracula.green};
       }
 
       @keyframes battery-critical {
          to {
-            color: #${config.colors.dracula.red};
+            color: #${theme.dracula.red};
          }
       }
 
