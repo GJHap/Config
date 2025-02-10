@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
-let username = import ../../shared/username.nix { };
+let
+  username = import ../../shared/username.nix { };
+  user = (pkgs.callPackage ../../shared/user.nix { }).user;
 in {
   imports = [
     ./hardware-configuration.nix
@@ -98,7 +100,7 @@ in {
   time.timeZone = "America/Los_Angeles";
   users = {
     users = {
-      ${username} = (pkgs.callPackage ../../shared/user.nix { }).config // {
+      ${username} = user // {
         extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" ];
       };
     };

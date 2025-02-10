@@ -1,5 +1,7 @@
 { pkgs, ... }:
-let username = import ../../shared/username.nix { };
+let
+  username = import ../../shared/username.nix { };
+  user = (pkgs.callPackage ../../shared/user.nix { }).user;
 in {
   imports = [ ../../shared/fonts.nix ../../shared/nix.nix ];
   programs = { zsh = { enable = true; }; };
@@ -7,9 +9,5 @@ in {
     defaults = { dock = { autohide = true; }; };
     stateVersion = 5;
   };
-  users = {
-    users = {
-      ${username} = (pkgs.callPackage ../../shared/user.nix { }).config;
-    };
-  };
+  users = { users = { ${username} = user; }; };
 }

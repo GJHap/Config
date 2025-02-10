@@ -2,8 +2,8 @@
 let
   wob_sock = "$XDG_RUNTIME_DIR/wob.sock";
   theme = (import ../../theme.nix { }).theme;
-  swayDisplayReloadFix = pkgs.callPackage ./swayDisplayReloadFix.nix { };
-  wofiLogout = pkgs.callPackage ./wofi-logout.nix { };
+  swayDisplayReloadFix = pkgs.callPackage ./swayDisplayReloadFix { };
+  wofiLogout = pkgs.callPackage ./wofi-logout { };
 in {
   wayland.windowManager.sway = {
     config = rec {

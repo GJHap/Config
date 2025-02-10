@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  config = {
+  user = {
     description = "Gregory Hapgood";
     isNormalUser = true;
     shell = pkgs.zsh;
