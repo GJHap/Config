@@ -1,7 +1,9 @@
 { pkgs, config, ... }:
 let
   wob_sock = "$XDG_RUNTIME_DIR/wob.sock";
-  theme = (import ../theme.nix { }).theme;
+  theme = (import ../../theme.nix { }).theme;
+  swayDisplayReloadFix = pkgs.callPackage ./swayDisplayReloadFix.nix { };
+  wofiLogout = pkgs.callPackage ./wofi-logout.nix { };
 in {
   wayland.windowManager.sway = {
     config = rec {
@@ -93,7 +95,7 @@ in {
         "Print" = "exec grim";
         "${modifier}+Print" = ''exec grim -g "$(slurp)" - | swappy -f -'';
 
-        "${modifier}+s" = "exec ${config.wofiLogout}";
+        "${modifier}+s" = "exec ${wofiLogout}";
         "${modifier}+w" = "kill";
         "${modifier}+v" = "exec clipman pick -t wofi";
         "${modifier}+r" = "reload";
@@ -115,7 +117,7 @@ in {
       startup = [
         {
           always = true;
-          command = "${config.swayDisplayReloadFix}";
+          command = "${swayDisplayReloadFix}";
         }
         {
           always = true;

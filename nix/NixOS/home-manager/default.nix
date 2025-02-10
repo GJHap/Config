@@ -10,14 +10,12 @@
     ./gtk.nix
     ./mimeApps.nix
     ./sway-audio-idle-inhibit.nix
-    ./sway.nix
+    ./sway
     ./swayidle.nix
     ./swaylock.nix
     ./waybar.nix
     ./wob.nix
     ./wofi.nix
-    ../options/swayDisplayReloadFix.nix
-    ../options/wofi-logout.nix
   ] ++ (if builtins.pathExists ./extras.nix then [ ./extras.nix ] else [ ]);
   home.packages = with pkgs; [
     adwaita-icon-theme
