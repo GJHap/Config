@@ -23,7 +23,7 @@ function generate_prompt() {
 }
 
 function git_prompt() {
-   if command -v git &> /dev/null && [[ -d .git ]]; then
+   if command -v git &> /dev/null && git rev-parse --is-inside-work-tree &> /dev/null; then
       local text=""
       local branch="$(git branch --show-current)"
       if [[ -n "$branch" ]]; then
