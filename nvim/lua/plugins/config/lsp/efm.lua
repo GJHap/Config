@@ -3,12 +3,14 @@ local function getConfig(localPath)
    return require(basePath .. '.' .. localPath)
 end
 
+local gofmt = getConfig('gofmt')
 local prettier = getConfig('prettier')
 local stylua = getConfig('stylua')
 local nixfmt = getConfig('nixfmt')
 
 return {
    css = { prettier },
+   go = { gofmt },
    graphql = { prettier },
    html = { prettier },
    javascript = { prettier },
