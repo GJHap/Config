@@ -10,7 +10,6 @@ return {
          select = {
             enable = true,
             lookahead = true,
-
             keymaps = {
                ['aa'] = '@attribute.outer',
                ['ia'] = '@attribute.inner',

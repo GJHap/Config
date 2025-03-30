@@ -2,7 +2,7 @@ vim.opt.cursorline = true
 vim.opt.expandtab = true
 vim.opt.fillchars = { fold = ' ', foldopen = '', foldclose = '' }
 vim.opt.foldcolumn = '1'
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldexpr = 'v:lua.vim.lsp.foldexpr()'
 vim.opt.foldmethod = 'expr'
 vim.opt.foldtext = 'getline(v:foldstart)'
 vim.opt.mouse = 'a'

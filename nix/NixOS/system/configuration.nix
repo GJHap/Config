@@ -28,7 +28,6 @@ in {
     brillo.enable = true;
     cpu.intel.updateMicrocode = true;
     graphics.enable = true;
-    pulseaudio.enable = false;
   };
   i18n.defaultLocale = "en_US.utf8";
   networking = {
@@ -75,6 +74,7 @@ in {
     };
     power-profiles-daemon.enable = false;
     printing.enable = true;
+    pulseaudio.enable = false;
     tlp = {
       enable = true;
       settings = {
