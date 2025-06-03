@@ -1,3 +1,5 @@
 require('opt')
 require('keybindings')
 require('plugin-manager')
+require('lsp')
+require('autocmds')

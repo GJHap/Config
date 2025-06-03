@@ -3,6 +3,6 @@ return {
    lazy = true,
    event = 'BufReadPre',
    dependencies = {
-      require('plugins.treesitter'),
+      require('plugins.treesitter.treesitter'),
    },
 }

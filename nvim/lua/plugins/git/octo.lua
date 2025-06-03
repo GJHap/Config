@@ -8,7 +8,7 @@ return {
    },
    dependencies = {
       'nvim-lua/plenary.nvim',
-      require('plugins.telescope'),
+      require('plugins.ui.telescope'),
       'kyazdani42/nvim-web-devicons',
    },
 }

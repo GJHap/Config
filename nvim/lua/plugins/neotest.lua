@@ -36,6 +36,6 @@ return {
       'marilari88/neotest-vitest',
       'nvim-neotest/nvim-nio',
       'nvim-lua/plenary.nvim',
-      require('plugins.treesitter'),
+      require('plugins.treesitter.treesitter'),
    },
 }

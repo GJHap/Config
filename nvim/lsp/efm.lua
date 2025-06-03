@@ -8,7 +8,7 @@ local prettier = getConfig('prettier')
 local stylua = getConfig('stylua')
 local nixfmt = getConfig('nixfmt')
 
-return {
+local languages = {
    css = { prettier },
    go = { gofmt },
    graphql = { prettier },
@@ -24,3 +24,13 @@ return {
    typescriptreact = { prettier },
    yaml = { prettier },
 }
+
+vim.lsp.config('efm', {
+   init_options = { documentFormatting = true, documentRangeFormatting = true },
+   filetypes = vim.tbl_keys(languages),
+   settings = {
+      rootMarkers = { '.git/' },
+      lintDebounce = '500ms',
+      languages = languages,
+   },
+})

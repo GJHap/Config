@@ -33,5 +33,5 @@ return {
       end, { desc = 'DAP - Evaluate' })
    end,
    config = true,
-   dependencies = { require('plugins.dap') },
+   dependencies = { require('plugins.dap.dap') },
 }

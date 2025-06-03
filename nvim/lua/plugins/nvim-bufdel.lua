@@ -1,4 +1,4 @@
-bufdel = function()
+local bufdel = function()
    return require('bufdel')
 end
 

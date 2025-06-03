@@ -2,6 +2,6 @@ return {
    'nvim-treesitter/nvim-treesitter-context',
    config = true,
    dependencies = {
-      require('plugins.treesitter'),
+      require('plugins.treesitter.treesitter'),
    },
 }

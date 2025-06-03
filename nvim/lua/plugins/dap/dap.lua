@@ -85,7 +85,7 @@ return {
       {
          'theHamsta/nvim-dap-virtual-text',
          dependencies = {
-            require('plugins.treesitter'),
+            require('plugins.treesitter.treesitter'),
          },
       },
    },

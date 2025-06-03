@@ -55,6 +55,11 @@ return {
 
       local telescope = require('telescope')
       telescope.setup({
+         extensions = {
+            ['ui-select'] = {
+               require('telescope.themes').get_dropdown(),
+            },
+         },
          defaults = {
             path_display = { shorten = { exclude = { -1, -2 } } },
             mappings = {
@@ -106,6 +111,8 @@ return {
             },
          },
       })
+
+      telescope.load_extension('ui-select')
    end,
-   dependencies = { 'nvim-lua/plenary.nvim' },
+   dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-ui-select.nvim' },
 }

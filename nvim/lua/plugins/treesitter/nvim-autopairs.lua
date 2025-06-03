@@ -3,6 +3,6 @@ return {
    event = 'InsertEnter',
    config = true,
    dependencies = {
-      require('plugins.treesitter'),
+      require('plugins.treesitter.treesitter'),
    },
 }
