@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 let
   wob_sock = "$XDG_RUNTIME_DIR/wob.sock";
   theme = (import ../../theme.nix { }).theme;

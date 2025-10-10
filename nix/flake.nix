@@ -4,6 +4,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mac-app-util.url = "github:hraban/mac-app-util";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nix-darwin = {
@@ -11,9 +12,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, home-manager, neovim-nightly-overlay, nix-darwin, nixpkgs }:
+  outputs = { self, home-manager, mac-app-util, neovim-nightly-overlay
+    , nix-darwin, nixpkgs }:
     let
-      buildSystem = { basePath, systemFn, system, hmFn }:
+      buildSystem =
+        { basePath, extraModules, systemFn, system, hmFn, hmExtraModules }:
         let username = import shared/username.nix { };
         in systemFn {
           inherit system;
@@ -27,28 +30,33 @@
             hmFn
             {
               home-manager = {
+                sharedModules = [ ] ++ hmExtraModules;
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users.${username} = import "${self}/${basePath}/home-manager";
               };
             }
-          ];
+          ] ++ extraModules;
         };
     in {
       darwinConfigurations = {
         darwin = buildSystem {
           basePath = "Darwin";
+          extraModules = [ mac-app-util.darwinModules.default ];
           systemFn = nix-darwin.lib.darwinSystem;
-          system = "x86_64-darwin";
+          system = "aarch64-darwin";
           hmFn = home-manager.darwinModules.home-manager;
+          hmExtraModules = [ mac-app-util.homeManagerModules.default ];
         };
       };
       nixosConfigurations = {
         nixos = buildSystem {
           basePath = "NixOS";
+          extraModules = [ ];
           systemFn = nixpkgs.lib.nixosSystem;
           system = "x86_64-linux";
           hmFn = home-manager.nixosModules.home-manager;
+          hmExtraModules = [ ];
         };
       };
     };

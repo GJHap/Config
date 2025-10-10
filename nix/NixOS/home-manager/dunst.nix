@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 let theme = (import ../theme.nix { }).theme;
 in {
   services.dunst = {

@@ -1,2 +1,4 @@
-{ }: let homePath = import ./homePath.nix { }; in "${homePath}/dev/Config"
+{ pkgs }:
+let homePath = import ./homePath.nix { inherit pkgs; };
+in "${homePath}/dev/Config"
 

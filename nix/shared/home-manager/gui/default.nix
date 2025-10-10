@@ -1,1 +1,2 @@
-{ config, lib, pkgs, ... }: { imports = [ ./packages.nix ./wezterm.nix ]; }
+{ ... }: { imports = [ ./packages.nix ./wezterm.nix ]; }
+

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
   username = import ../../shared/username.nix { };
   user = (pkgs.callPackage ../../shared/user.nix { }).user;
@@ -33,6 +33,10 @@ in {
   networking = {
     hostName = username;
     networkmanager.enable = true;
+  };
+  nix = {
+    gc.dates = "weekly";
+    optimise.dates = "weekly";
   };
   programs = {
     dconf.enable = true;
@@ -101,6 +105,7 @@ in {
   users = {
     users = {
       ${username} = user // {
+        isNormalUser = true;
         extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" ];
       };
     };

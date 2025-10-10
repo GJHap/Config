@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ ... }: {
   xdg.mimeApps = {
     defaultApplications = let
       nvim = "nvim.desktop";

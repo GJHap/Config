@@ -1,9 +1,7 @@
 { pkgs, ... }: {
   imports = [
-    ../../shared/home-manager/gui
-    ../../shared/home-manager/tui
+    ../../shared/home-manager
     ./clipman.nix
-    ./direnv.nix
     ./dunst.nix
     ./gammastep.nix
     ./gnome-keyring.nix

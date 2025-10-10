@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 let theme = (import ../theme.nix { }).theme;
 in {
   services.wob = {
