@@ -1,8 +1,8 @@
 return {
    'ggandor/leap.nvim',
-   lazy = true,
    event = 'BufReadPre',
-   config = function()
-      require('leap').set_default_keymaps()
+   init = function()
+      local nnoremap = require('util').nnoremap
+      nnoremap('s', '<Plug>(leap)')
    end,
 }
