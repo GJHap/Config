@@ -21,7 +21,7 @@ in {
     tmp = { cleanOnBoot = true; };
   };
   environment = {
-    systemPackages = with pkgs; [ greetd.greetd vulkan-validation-layers ];
+    systemPackages = with pkgs; [ greetd vulkan-validation-layers ];
   };
   hardware = {
     bluetooth = { enable = true; };
