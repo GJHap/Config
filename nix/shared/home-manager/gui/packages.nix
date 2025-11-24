@@ -1,2 +1,9 @@
-{ pkgs, ... }: { home.packages = with pkgs; [ brave firefox obsidian ]; }
+{ pkgs, ... }:
+{
+  home.packages = with pkgs; [
+    brave
+    firefox
+    obsidian
+  ];
+}
 

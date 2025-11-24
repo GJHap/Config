@@ -1,3 +1,6 @@
 { }:
-let usernameEnv = builtins.getEnv "USERNAME";
-in if usernameEnv == "" then "ghapgood" else usernameEnv
+let
+  usernameEnv = builtins.getEnv "USERNAME";
+in
+if usernameEnv == "" then "ghapgood" else usernameEnv
+

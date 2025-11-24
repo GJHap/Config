@@ -1,6 +1,8 @@
 { pkgs, ... }:
-let theme = (import ../theme.nix { }).theme;
-in {
+let
+  theme = (import ../theme.nix { }).theme;
+in
+{
   services.dunst = {
     enable = true;
     package = pkgs.dunst.override { withX11 = false; };
@@ -14,8 +16,7 @@ in {
         foreground = "#${theme.dracula.foreground}";
         frame_width = 0;
         height = 100;
-        icon_path =
-          "${pkgs.adwaita-icon-theme}/share/icons/Adwaita/16x16/status/:${pkgs.adwaita-icon-theme}/share/icons/Adwaita/16x16/devices/:${pkgs.adwaita-icon-theme}/share/icons/Adwaita/16x16/legacy/";
+        icon_path = "${pkgs.adwaita-icon-theme}/share/icons/Adwaita/16x16/status/:${pkgs.adwaita-icon-theme}/share/icons/Adwaita/16x16/devices/:${pkgs.adwaita-icon-theme}/share/icons/Adwaita/16x16/legacy/";
         markup = "full";
         monitor = 0;
         separator_color = "foreground";

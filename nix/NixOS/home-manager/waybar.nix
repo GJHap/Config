@@ -1,6 +1,8 @@
 { pkgs, ... }:
-let theme = (import ../theme.nix { }).theme;
-in {
+let
+  theme = (import ../theme.nix { }).theme;
+in
+{
   programs.waybar = {
     enable = true;
     systemd.enable = true;
@@ -14,7 +16,18 @@ in {
           };
           format = "{icon}";
           format-charging = "";
-          format-icons = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
+          format-icons = [
+            "󰁺"
+            "󰁻"
+            "󰁼"
+            "󰁽"
+            "󰁾"
+            "󰁿"
+            "󰂀"
+            "󰂁"
+            "󰂂"
+            "󰁹"
+          ];
           format-plugged = "";
           tooltip-format = "{capacity}% remaining";
         };
@@ -23,8 +36,7 @@ in {
           calendar = {
             format = {
               months = "<span weight='bold' color='#ecc6d9'>{}</span>";
-              today =
-                "<span weight='bold' color='#${theme.dracula.green}'>{}</span>";
+              today = "<span weight='bold' color='#${theme.dracula.green}'>{}</span>";
             };
             mode = "year";
             mode-mon-col = 3;
@@ -36,7 +48,11 @@ in {
         };
         modules-center = [ "clock" ];
         modules-left = [ "sway/workspaces" ];
-        modules-right = [ "network" "pulseaudio" "battery" ];
+        modules-right = [
+          "network"
+          "pulseaudio"
+          "battery"
+        ];
         network = {
           format-ethernet = "󰈁";
           format-disconnected = "";
@@ -47,7 +63,13 @@ in {
           format = "{icon} {format_source}";
           format-bluetooth = "{icon} 󰂱 {format_source}";
           format-bluetooth-muted = "{icon} 󰂲 {format_source}";
-          format-icons = { "default" = [ "󰕿" "󰖀" "󰕾" ]; };
+          format-icons = {
+            "default" = [
+              "󰕿"
+              "󰖀"
+              "󰕾"
+            ];
+          };
           format-muted = "󰖁 {format_source}";
           format-source = "󰍬";
           format-source-muted = "󰍭";

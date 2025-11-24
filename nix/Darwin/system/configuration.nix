@@ -7,17 +7,33 @@ let
     Minute = 0;
     Weekday = 7;
   };
-in {
-  imports = [ ../../shared/fonts.nix ../../shared/nix.nix ];
+in
+{
+  imports = [
+    ../../shared/fonts.nix
+    ../../shared/nix.nix
+  ];
   nix = {
     gc.interval = [ interval ];
     optimise.interval = [ interval ];
   };
-  programs = { zsh = { enable = true; }; };
+  programs = {
+    zsh = {
+      enable = true;
+    };
+  };
   system = {
-    defaults = { dock = { autohide = true; }; };
+    defaults = {
+      dock = {
+        autohide = true;
+      };
+    };
     primaryUser = username;
     stateVersion = 5;
   };
-  users = { users = { ${username} = user; }; };
+  users = {
+    users = {
+      ${username} = user;
+    };
+  };
 }

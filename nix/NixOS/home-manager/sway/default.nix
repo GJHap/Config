@@ -4,17 +4,18 @@ let
   theme = (import ../../theme.nix { }).theme;
   swayDisplayReloadFix = pkgs.callPackage ./swayDisplayReloadFix { };
   wofiLogout = pkgs.callPackage ./wofi-logout { };
-in {
+in
+{
   wayland.windowManager.sway = {
     config = rec {
       assigns = {
-        "1" = [{ app_id = "org.wezfurlong.wezterm"; }];
+        "1" = [ { app_id = "org.wezfurlong.wezterm"; } ];
         "2" = [
           { app_id = "firefox"; }
           { app_id = "chromium-browser"; }
           { app_id = "brave-browser"; }
         ];
-        "3" = [{ app_id = "thunderbird"; }];
+        "3" = [ { app_id = "thunderbird"; } ];
       };
       bars = [ ];
       colors = {
@@ -26,7 +27,9 @@ in {
           text = "#ffffff";
         };
       };
-      focus = { followMouse = "no"; };
+      focus = {
+        followMouse = "no";
+      };
       input = {
         "type:touchpad" = {
           accel_profile = "adaptive";
@@ -74,12 +77,12 @@ in {
         "${modifier}+Shift+4" = "move container to workspace number 4";
         "${modifier}+Shift+5" = "move container to workspace number 5";
 
-        "XF86AudioRaiseVolume" = ''
-          exec echo "$(pamixer -ui 5 && pamixer --get-volume volume) volume" > ${wob_sock}'';
-        "XF86AudioLowerVolume" = ''
-          exec echo "$(pamixer -ud 5 && pamixer --get-volume volume) volume" > ${wob_sock}'';
-        "XF86AudioMute" = ''
-          exec pamixer --toggle-mute && echo "$(pamixer --get-volume) $($(pamixer --get-mute) && echo "volume-mute" || echo "volume")" > ${wob_sock}'';
+        "XF86AudioRaiseVolume" =
+          ''exec echo "$(pamixer -ui 5 && pamixer --get-volume volume) volume" > ${wob_sock}'';
+        "XF86AudioLowerVolume" =
+          ''exec echo "$(pamixer -ud 5 && pamixer --get-volume volume) volume" > ${wob_sock}'';
+        "XF86AudioMute" =
+          ''exec pamixer --toggle-mute && echo "$(pamixer --get-volume) $($(pamixer --get-mute) && echo "volume-mute" || echo "volume")" > ${wob_sock}'';
         "XF86AudioStop" = "exec playerctl --all-players stop";
         "XF86AudioPause" = "exec playerctl --all-players pause";
         "XF86AudioPlay" = "exec playerctl --all-players play-pause";
@@ -87,10 +90,10 @@ in {
         "XF86AudioPrev" = "exec playerctl --all-players previous";
         "XF86AudioMicMute" = "exec pamixer --default-source -t";
 
-        "XF86MonBrightnessUp" = ''
-          exec printf "%.0f brightness\n" $(brillo -q -A 5 && brillo -q) > ${wob_sock}'';
-        "XF86MonBrightnessDown" = ''
-          exec printf "%.0f brightness\n" $(brillo -q -U 5 && brillo -q) > ${wob_sock}'';
+        "XF86MonBrightnessUp" =
+          ''exec printf "%.0f brightness\n" $(brillo -q -A 5 && brillo -q) > ${wob_sock}'';
+        "XF86MonBrightnessDown" =
+          ''exec printf "%.0f brightness\n" $(brillo -q -U 5 && brillo -q) > ${wob_sock}'';
 
         "Print" = "exec grim";
         "${modifier}+Print" = ''exec grim -g "$(slurp)" - | swappy -f -'';
@@ -109,11 +112,14 @@ in {
       menu = "wofi --show drun -O alphabetical";
       output = {
         "*" = {
-          bg =
-            "${pkgs.nixos-artwork.wallpapers.nineish-dark-gray}/share/backgrounds/nixos/nix-wallpaper-nineish-dark-gray.png fill";
+          bg = "${pkgs.nixos-artwork.wallpapers.nineish-dark-gray}/share/backgrounds/nixos/nix-wallpaper-nineish-dark-gray.png fill";
         };
       };
-      seat = { seat0 = { xcursor_theme = "capitaine-cursors 25"; }; };
+      seat = {
+        seat0 = {
+          xcursor_theme = "capitaine-cursors 25";
+        };
+      };
       startup = [
         {
           always = true;
@@ -132,10 +138,14 @@ in {
       terminal = "wezterm";
       window = {
         border = 1;
-        commands = [{
-          command = "move window to workspace 4";
-          criteria = { title = "^Spotify"; };
-        }];
+        commands = [
+          {
+            command = "move window to workspace 4";
+            criteria = {
+              title = "^Spotify";
+            };
+          }
+        ];
         hideEdgeBorders = "smart";
       };
     };

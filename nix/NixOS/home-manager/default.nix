@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   imports = [
     ../../shared/home-manager
     ./clipman.nix
@@ -14,7 +15,8 @@
     ./waybar.nix
     ./wob.nix
     ./wofi.nix
-  ] ++ (if builtins.pathExists ./extras.nix then [ ./extras.nix ] else [ ]);
+  ]
+  ++ (if builtins.pathExists ./extras.nix then [ ./extras.nix ] else [ ]);
   home.packages = with pkgs; [
     adwaita-icon-theme
     anki

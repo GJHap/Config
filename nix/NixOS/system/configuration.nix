@@ -2,7 +2,8 @@
 let
   username = import ../../shared/username.nix { };
   user = (pkgs.callPackage ../../shared/user.nix { }).user;
-in {
+in
+{
   imports = [
     ./hardware-configuration.nix
     ../../shared/fonts.nix
@@ -11,20 +12,29 @@ in {
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     loader = {
-      efi = { canTouchEfiVariables = true; };
+      efi = {
+        canTouchEfiVariables = true;
+      };
       systemd-boot = {
         consoleMode = "max";
         editor = false;
         enable = true;
       };
     };
-    tmp = { cleanOnBoot = true; };
+    tmp = {
+      cleanOnBoot = true;
+    };
   };
   environment = {
-    systemPackages = with pkgs; [ greetd vulkan-validation-layers ];
+    systemPackages = with pkgs; [
+      greetd
+      vulkan-validation-layers
+    ];
   };
   hardware = {
-    bluetooth = { enable = true; };
+    bluetooth = {
+      enable = true;
+    };
     brillo.enable = true;
     cpu.intel.updateMicrocode = true;
     graphics.enable = true;
@@ -47,7 +57,9 @@ in {
         pinentryPackage = pkgs.pinentry-gnome3;
       };
     };
-    steam = { enable = true; };
+    steam = {
+      enable = true;
+    };
     zsh.enable = true;
   };
   security = {
@@ -106,7 +118,12 @@ in {
     users = {
       ${username} = user // {
         isNormalUser = true;
-        extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" ];
+        extraGroups = [
+          "networkmanager"
+          "wheel"
+          "video"
+          "libvirtd"
+        ];
       };
     };
   };

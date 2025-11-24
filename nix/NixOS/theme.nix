@@ -1,4 +1,5 @@
-{ }: {
+{ }:
+{
   theme = {
     dracula = {
       background = "282A36";

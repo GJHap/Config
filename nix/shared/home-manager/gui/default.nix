@@ -1,2 +1,8 @@
-{ ... }: { imports = [ ./packages.nix ./wezterm.nix ]; }
+{ ... }:
+{
+  imports = [
+    ./packages.nix
+    ./wezterm.nix
+  ];
+}
 

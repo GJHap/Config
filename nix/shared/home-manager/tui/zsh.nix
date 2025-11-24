@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
-let configPath = import ../../configPath.nix { inherit pkgs; };
-in {
+let
+  configPath = import ../../configPath.nix { inherit pkgs; };
+in
+{
   home = {
     packages = with pkgs; [ zsh ];
     file = {

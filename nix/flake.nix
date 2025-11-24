@@ -12,13 +12,29 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, home-manager, mac-app-util, neovim-nightly-overlay
-    , nix-darwin, nixpkgs }:
+  outputs =
+    {
+      self,
+      home-manager,
+      mac-app-util,
+      neovim-nightly-overlay,
+      nix-darwin,
+      nixpkgs,
+    }:
     let
       buildSystem =
-        { basePath, extraModules, systemFn, system, hmFn, hmExtraModules }:
-        let username = import shared/username.nix { };
-        in systemFn {
+        {
+          basePath,
+          extraModules,
+          systemFn,
+          system,
+          hmFn,
+          hmExtraModules,
+        }:
+        let
+          username = import shared/username.nix { };
+        in
+        systemFn {
           inherit system;
           pkgs = import nixpkgs {
             inherit system;
@@ -36,9 +52,11 @@
                 users.${username} = import "${self}/${basePath}/home-manager";
               };
             }
-          ] ++ extraModules;
+          ]
+          ++ extraModules;
         };
-    in {
+    in
+    {
       darwinConfigurations = {
         darwin = buildSystem {
           basePath = "Darwin";

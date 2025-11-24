@@ -1,10 +1,13 @@
-{ ... }: {
+{ ... }:
+{
   gtk = {
     cursorTheme = {
       name = "capitaine-cursors";
       size = 25;
     };
     enable = true;
-    theme = { name = "Dracula"; };
+    theme = {
+      name = "Dracula";
+    };
   };
 }

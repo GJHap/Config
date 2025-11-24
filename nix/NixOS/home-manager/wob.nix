@@ -1,6 +1,8 @@
 { ... }:
-let theme = (import ../theme.nix { }).theme;
-in {
+let
+  theme = (import ../theme.nix { }).theme;
+in
+{
   services.wob = {
     enable = true;
     settings = {
