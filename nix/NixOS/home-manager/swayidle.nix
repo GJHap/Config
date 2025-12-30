@@ -7,12 +7,9 @@
     in
     {
       enable = true;
-      events = [
-        {
-          command = "${swaylock} -f";
-          event = "before-sleep";
-        }
-      ];
+      events = {
+        "before-sleep" = "${swaylock} -f";
+      };
       timeouts = [
         {
           command = ''${swaymsg} "output * dpms off"'';
