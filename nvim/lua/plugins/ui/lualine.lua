@@ -3,7 +3,7 @@ return {
    config = function()
       local lualine = require('lualine')
       local noice = require('noice')
-      local colors = require('tokyonight.colors').setup({ transform = true })
+      local colors = require('tokyonight.colors').setup()
 
       local function winbarActive()
          local function is_window_float(window)
@@ -12,7 +12,8 @@ return {
          end
 
          local function is_window_invalid_filetype(window)
-            local ft = vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(window), 'filetype')
+            local buffer = vim.api.nvim_win_get_buf(window)
+            local ft = vim.api.nvim_get_option_value('filetype', { buf = buffer })
 
             return ft:match('^NvimTree$')
                or ft:match('^packer$')
