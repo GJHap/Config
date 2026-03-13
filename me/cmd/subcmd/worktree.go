@@ -15,6 +15,7 @@ func WorktreeCommand(repoPath string, links worktree.WorktreeLinks) *cobra.Comma
 	}
 	worktreeCommand.AddCommand(addCommand(repoPath, links))
 	worktreeCommand.AddCommand(cleanCommand(repoPath))
+	worktreeCommand.AddCommand(removeCommand(repoPath))
 
 	return worktreeCommand
 }
@@ -51,4 +52,19 @@ func cleanCommand(repoPath string) *cobra.Command {
 
 	cleanCommand.Flags().BoolVar(&dryRun, "dryRun", false, "Perform a trial run")
 	return cleanCommand
+}
+
+func removeCommand(repoPath string) *cobra.Command {
+	removeCommand := &cobra.Command{
+		Use:  "remove [string]",
+		Args: cobra.ExactArgs(1),
+		RunE: func(cmd *cobra.Command, args []string) error {
+			worktreeName := args[0]
+			worktreePath := path.Join(repoPath, "..", worktreeName)
+
+			return worktree.Remove(repoPath, worktreePath)
+		},
+	}
+
+	return removeCommand
 }

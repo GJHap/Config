@@ -87,20 +87,10 @@ func isPastExpiration(worktreePath string, expiration time.Time) (bool, error) {
 
 func removeWorktrees(repoPath string, worktreePaths []string) error {
 	for _, worktreePath := range worktreePaths {
-		if err := removeWorktree(repoPath, worktreePath); err != nil {
+		if err := Remove(repoPath, worktreePath); err != nil {
 			return err
 		}
 	}
 
 	return nil
-}
-
-func removeWorktree(repoPath string, worktreePath string) error {
-	splitWorktreePath := strings.Split(worktreePath, string(os.PathSeparator))
-	worktreeName := splitWorktreePath[len(splitWorktreePath)-1]
-
-	cmd := exec.Command("git", "worktree", "remove", worktreeName, "--force")
-	cmd.Dir = repoPath
-
-	return cmd.Run()
 }
