@@ -26,6 +26,7 @@
     capitaine-cursors
     dracula-theme
     gcc
+    gimp
     glib
     grim
     htop
