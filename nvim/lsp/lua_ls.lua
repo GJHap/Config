@@ -1,4 +1,4 @@
-vim.lsp.config('lua_ls', {
+return {
    settings = {
       Lua = {
          runtime = { version = 'LuaJIT' },
@@ -9,4 +9,4 @@ vim.lsp.config('lua_ls', {
          },
       },
    },
-})
+}

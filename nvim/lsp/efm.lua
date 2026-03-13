@@ -25,7 +25,7 @@ local languages = {
    yaml = { prettier },
 }
 
-vim.lsp.config('efm', {
+return {
    init_options = { documentFormatting = true, documentRangeFormatting = true },
    filetypes = vim.tbl_keys(languages),
    settings = {
@@ -33,4 +33,4 @@ vim.lsp.config('efm', {
       lintDebounce = '500ms',
       languages = languages,
    },
-})
+}
