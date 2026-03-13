@@ -6,6 +6,7 @@ source ~/zsh/integrations/index.zsh
 source ~/zsh/plugin.zsh
 source ~/zsh/global.zsh
 source ~/zsh/history.zsh
+source ~/zsh/path.zsh
 source ~/zsh/alias.zsh
 source ~/zsh/function.zsh
 source ~/zsh/style.zsh
