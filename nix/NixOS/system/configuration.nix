@@ -50,7 +50,6 @@ in
   };
   programs = {
     dconf.enable = true;
-    fish.enable = true;
     gnupg = {
       agent = {
         enable = true;

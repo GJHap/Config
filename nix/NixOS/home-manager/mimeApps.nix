@@ -10,7 +10,6 @@
       {
         "application/json" = [ nvim ];
         "application/pdf" = [ brave ];
-        "application/x-fishscript" = [ nvim ];
         "application/x-shellscript" = [ nvim ];
         "application/xml" = [ nvim ];
         "text/calendar" = [ thunderbird ];

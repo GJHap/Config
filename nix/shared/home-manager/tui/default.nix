@@ -2,7 +2,6 @@
 {
   imports = [
     ./direnv.nix
-    ./fish.nix
     ./lf.nix
     ./nvim.nix
     ./packages.nix

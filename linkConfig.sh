@@ -1,4 +1,3 @@
-ln -s ~/dev/Config/fish ~/config/fish
 ln -s ~/dev/Config/lf ~/config/lf
 ln -s ~/dev/Config/nvim ~/config/nvim
 ln -s ~/dev/Config/tmux ~/config/tmux
