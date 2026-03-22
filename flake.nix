@@ -1,14 +1,37 @@
 {
-  inputs = { nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable"; };
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  };
 
-  outputs = { nixpkgs, ... }:
+  outputs =
+    { nixpkgs, ... }:
     let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
-    in with pkgs; {
-      devShells.x86_64-linux.default = mkShell {
-        buildInputs =
-          [ efm-langserver go gopls lua-language-server nixd nixfmt stylua ];
-      };
+      supportedSystems = [
+        "x86_64-linux"
+        "aarch64-darwin"
+      ];
+      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+      nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; });
+    in
+    {
+      devShells = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgsFor.${system};
+        in
+        {
+          default = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              efm-langserver
+              go
+              gopls
+              lua-language-server
+              nixd
+              nixfmt-rfc-style
+              stylua
+            ];
+          };
+        }
+      );
     };
 }

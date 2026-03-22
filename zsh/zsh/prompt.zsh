@@ -1,3 +1,11 @@
+function get_catppuccin_color() {
+  local flavor="${(U)$(get_catppuccin_flavor)}"
+  local color_name="${(U)1}"
+  local var_name="CATPPUCCIN_${flavor}_${color_name}"
+
+  echo "${(P)var_name}"
+}
+
 function directory_prompt() {
    local prev_bg=$1
    local current_bg=$2
@@ -36,34 +44,24 @@ function git_prompt() {
    fi
 }
 
-function status_prompt() {
-   if [[ $? -ne 0 ]]; then
-      generate_prompt $1 $2 $3 ""
-   else
-      reply=("\0" $1)
-   fi
-}
-
 function vi_mode {
-  echo %F{yellow}${ZVM_MODE:u}%f
+  local fg="$1"
+  echo "%F{$fg}${ZVM_MODE:u}%f"
 }
 
 function prompt() {
-   v=$(vi_mode)
+   v=$(vi_mode "$(get_catppuccin_color peach)")
 
-   status_prompt black red normal
-   s=("${reply[@]}")
-
-   directory_prompt $s[2] magenta black
+   directory_prompt "$(get_catppuccin_color base)" "$(get_catppuccin_color mauve)" "$(get_catppuccin_color base)"
    d=("${reply[@]}")
 
-   git_prompt $d[2] yellow black
+   git_prompt $d[2] "$(get_catppuccin_color sky)" "$(get_catppuccin_color base)"
    g=("${reply[@]}")
 
-   end_prompt $g[2] normal normal
+   end_prompt $g[2] "$(get_catppuccin_color base)" "$(get_catppuccin_color base)"
    e=("${reply[@]}")
 
-   echo "$v$s[1]$d[1]$g[1]$e[1] "
+   echo "$v$d[1]$g[1]$e[1] "
 }
 
 setopt prompt_subst

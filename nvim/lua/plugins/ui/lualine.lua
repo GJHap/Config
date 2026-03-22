@@ -1,112 +1,124 @@
-return {
-   'nvim-lualine/lualine.nvim',
-   config = function()
-      local lualine = require('lualine')
-      local noice = require('noice')
-      local colors = require('tokyonight.colors').setup()
+local function setup()
+   local noice = require('noice')
 
-      local function winbarActive()
-         local function is_window_float(window)
-            local cfg = vim.api.nvim_win_get_config(window)
-            return cfg.relative > '' or cfg.external
-         end
-
-         local function is_window_invalid_filetype(window)
-            local buffer = vim.api.nvim_win_get_buf(window)
-            local ft = vim.api.nvim_get_option_value('filetype', { buf = buffer })
-
-            return ft:match('^NvimTree$')
-               or ft:match('^packer$')
-               or ft:match('^fugitive$')
-               or ft:match('^fugitiveblame$')
-               or ft:match('^help$')
-               or ft:match('^toggleterm$')
-         end
-
-         local windows = vim.api.nvim_tabpage_list_wins(vim.api.nvim_get_current_tabpage())
-         local window_count = 0
-
-         for _, window in pairs(windows) do
-            if not is_window_float(window) and not is_window_invalid_filetype(window) then
-               window_count = window_count + 1
-            end
-         end
-         return window_count > 1
+   local function winbarActive()
+      local function is_window_float(window)
+         local cfg = vim.api.nvim_win_get_config(window)
+         return cfg.relative > '' or cfg.external
       end
 
-      local separator_left = { separator = { left = '' } }
-      local separator_right = { separator = { right = '' } }
+      local function is_window_invalid_filetype(window)
+         local buffer = vim.api.nvim_win_get_buf(window)
+         local ft = vim.api.nvim_get_option_value('filetype', { buf = buffer })
 
-      local teal_component = { color = { fg = colors.fg_gutter, bg = colors.teal } }
-      local teal_component_right = vim.tbl_extend('keep', separator_left, teal_component)
-      local teal_component_left = vim.tbl_extend('keep', separator_right, teal_component)
+         return ft:match('^NvimTree$') or ft:match('^fugitive$') or ft:match('^fugitiveblame$') or ft:match('^help$')
+      end
 
-      local dark_component = { color = { fg = colors.fg, bg = colors.dark3 } }
-      local dark_component_right = vim.tbl_extend('keep', separator_left, dark_component)
-      local dark_component_left = vim.tbl_extend('keep', separator_right, dark_component)
+      local windows = vim.api.nvim_tabpage_list_wins(vim.api.nvim_get_current_tabpage())
+      local window_count = 0
 
-      local orange_component = { color = { fg = colors.fg_gutter, bg = colors.orange } }
-      local orange_component_right = vim.tbl_extend('keep', separator_left, orange_component)
-      local orange_component_left = vim.tbl_extend('keep', separator_right, orange_component)
+      for _, window in pairs(windows) do
+         if not is_window_float(window) and not is_window_invalid_filetype(window) then
+            window_count = window_count + 1
+         end
+      end
+      return window_count > 1
+   end
 
-      local bg_component = { color = { bg = colors.bg_dark } }
-
-      lualine.setup({
-         options = {
-            theme = 'tokyonight',
-            globalstatus = true,
-         },
-         sections = {
-            lualine_a = {
-               vim.tbl_extend(
-                  'keep',
-                  { noice.api.status.mode.get, cond = noice.api.status.mode.has },
-                  orange_component_left
-               ),
-               vim.tbl_extend('keep', { 'mode' }, teal_component_left),
-               vim.tbl_extend('keep', { 'branch' }, dark_component_left),
-               vim.tbl_extend('keep', { 'diagnostics', colored = true }, bg_component),
+   require('lualine').setup({
+      options = {
+         theme = 'auto',
+         globalstatus = true,
+      },
+      sections = {
+         lualine_a = {
+            {
+               noice.api.status.mode.get,
+               cond = noice.api.status.mode.has,
+               color = 'LualinePeach',
+               separator = { right = '', color = 'LualineSepPeach' },
             },
-            lualine_b = {},
-            lualine_c = {},
-            lualine_x = {},
-            lualine_y = {},
-            lualine_z = {
-               vim.tbl_extend('keep', { 'searchcount' }, orange_component_right),
-               vim.tbl_extend('keep', { 'location' }, teal_component_right),
-               vim.tbl_extend('keep', { 'progress' }, dark_component_right),
+            {
+               'mode',
+               color = 'LualineMauve',
+               separator = { right = '', color = 'LualineSepMauve' },
+            },
+            {
+               'branch',
+               color = 'LualineSky',
+               separator = { right = '', color = 'LualineSepSky' },
+            },
+            {
+               'diagnostics',
+               color = 'LualineSurface',
             },
          },
-         winbar = {
-            lualine_a = {
-               {
-                  'filename',
-                  cond = winbarActive,
-               },
+         lualine_b = {},
+         lualine_c = {},
+         lualine_x = {},
+         lualine_y = {},
+         lualine_z = {
+            {
+               'searchcount',
+               color = 'LualinePeach',
+               separator = { left = '', color = 'LualineSepPeach' },
             },
-            lualine_b = {},
-            lualine_c = {},
-            lualine_x = {},
-            lualine_y = {},
-            lualine_z = {},
-         },
-         inactive_winbar = {
-            lualine_a = {
-               {
-                  'filename',
-                  cond = winbarActive,
-               },
+            {
+               'location',
+               color = 'LualineMauve',
+               separator = { left = '', color = 'LualineSepMauve' },
             },
-            lualine_b = {},
-            lualine_c = {},
-            lualine_x = {},
-            lualine_y = {},
-            lualine_z = {},
+            {
+               'progress',
+               color = 'LualineSky',
+               separator = { left = '', color = 'LualineSepSky' },
+            },
          },
+      },
+      winbar = {
+         lualine_a = {
+            {
+               'filename',
+               cond = winbarActive,
+            },
+         },
+         lualine_b = {},
+         lualine_c = {},
+         lualine_x = {},
+         lualine_y = {},
+         lualine_z = {},
+      },
+      inactive_winbar = {
+         lualine_a = {
+            {
+               'filename',
+               cond = winbarActive,
+            },
+         },
+         lualine_b = {},
+         lualine_c = {},
+         lualine_x = {},
+         lualine_y = {},
+         lualine_z = {},
+      },
+   })
+end
+
+return {
+   'nvim-lualine/lualine.nvim',
+   init = function()
+      vim.api.nvim_create_autocmd('User', {
+         pattern = 'ThemeUpdated',
+         callback = function()
+            setup()
+         end,
       })
+   end,
+   config = function()
+      setup()
    end,
    dependencies = {
       'kyazdani42/nvim-web-devicons',
-      require('plugins.tokyonight'),
+      require('plugins.catppuccin'),
    },
 }
