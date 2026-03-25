@@ -33,7 +33,7 @@ _load_catppuccin() {
 
   [[ -f "$json_file" ]] || curl -s "$url" -o "$json_file"
 
-  if [[ -f "$json_file" ]]; then
+  if [[ -f "$json_file" ]] && command -v jq &> /dev/null; then
      for flavor in $flavors; do
         local color_data=$(jq -r ".\"$flavor\".colors | to_entries[] | \"\(.key|ascii_upcase)=\(.value.hex)\"" "$json_file")
         while read -r line; do

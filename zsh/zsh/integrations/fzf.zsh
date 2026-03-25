@@ -9,7 +9,7 @@ function set_fzf_command_default() {
 set_fzf_command_default
 
 function set_fzf_command_gitignore() {
-   set_fzf_command
+   set_fzf_command "rg --files --no-ignore-vcs"
 }
 
 if command -v fzf &> /dev/null; then

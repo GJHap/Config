@@ -1,5 +1,5 @@
 function get_catppuccin_color() {
-  local flavor="${(U)$(get_catppuccin_flavor)}"
+  local flavor="${(U)${2:-$(get_catppuccin_flavor)}}"
   local color_name="${(U)1}"
   local var_name="CATPPUCCIN_${flavor}_${color_name}"
 
@@ -7,10 +7,6 @@ function get_catppuccin_color() {
 }
 
 function directory_prompt() {
-   local prev_bg=$1
-   local current_bg=$2
-   local current_fg=$3
-
    generate_prompt $1 $2 $3 " %4~ "
 }
 
@@ -50,16 +46,17 @@ function vi_mode {
 }
 
 function prompt() {
-   v=$(vi_mode "$(get_catppuccin_color peach)")
+   local flavor=$(get_catppuccin_flavor)
+   local v=$(vi_mode "$(get_catppuccin_color peach $flavor)")
 
-   directory_prompt "$(get_catppuccin_color base)" "$(get_catppuccin_color mauve)" "$(get_catppuccin_color base)"
-   d=("${reply[@]}")
+   directory_prompt "$(get_catppuccin_color base $flavor)" "$(get_catppuccin_color mauve $flavor)" "$(get_catppuccin_color base $flavor)"
+   local d=("${reply[@]}")
 
-   git_prompt $d[2] "$(get_catppuccin_color sky)" "$(get_catppuccin_color base)"
-   g=("${reply[@]}")
+   git_prompt $d[2] "$(get_catppuccin_color sky $flavor)" "$(get_catppuccin_color base $flavor)"
+   local g=("${reply[@]}")
 
-   end_prompt $g[2] "$(get_catppuccin_color base)" "$(get_catppuccin_color base)"
-   e=("${reply[@]}")
+   end_prompt $g[2] "$(get_catppuccin_color base $flavor)" "$(get_catppuccin_color base $flavor)"
+   local e=("${reply[@]}")
 
    echo "$v$d[1]$g[1]$e[1] "
 }
