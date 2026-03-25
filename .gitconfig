@@ -1,23 +1,24 @@
 [merge]
-   tool = nvimdiff
+   tool = diffview
 [mergetool]
    prompt = false
-[mergetool "nvimdiff"]
-   cmd = nvim -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\" -c \"wincmd w\" -c \"wincmd J\"
+[mergetool "diffview"]
+   cmd = nvim -c "DiffviewOpen"
 
 [diff]
-   tool = nvimdiff
+   tool = diffview
 [difftool]
    prompt = false
-[difftool "nvimdiff"]
-   cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
+[difftool "diffview"]
+   cmd = nvim -c "DiffviewOpen $LOCAL..$REMOTE"
 
 [fetch]
    prune = true
 
 [alias]
    amend = commit --amend
-   server-branch = !git checkout -b $1 && git push -u origin
+   review = difftool -d
+   fix = mergetool -d
 
 [init]
    defaultBranch = main

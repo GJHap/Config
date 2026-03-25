@@ -1,6 +1,4 @@
 local function setup()
-   local noice = require('noice')
-
    local function winbarActive()
       local function is_window_float(window)
          local cfg = vim.api.nvim_win_get_config(window)
@@ -11,7 +9,7 @@ local function setup()
          local buffer = vim.api.nvim_win_get_buf(window)
          local ft = vim.api.nvim_get_option_value('filetype', { buf = buffer })
 
-         return ft:match('^NvimTree$') or ft:match('^fugitive$') or ft:match('^fugitiveblame$') or ft:match('^help$')
+         return ft:match('^oil$') or ft:match('^fugitive$') or ft:match('^fugitiveblame$') or ft:match('^help$')
       end
 
       local windows = vim.api.nvim_tabpage_list_wins(vim.api.nvim_get_current_tabpage())
@@ -33,8 +31,13 @@ local function setup()
       sections = {
          lualine_a = {
             {
-               noice.api.status.mode.get,
-               cond = noice.api.status.mode.has,
+               function()
+                  local reg = vim.fn.reg_recording()
+                  return reg ~= '' and 'recording @' .. reg or ''
+               end,
+               cond = function()
+                  return vim.fn.reg_recording() ~= ''
+               end,
                color = 'LualinePeach',
                separator = { right = '', color = 'LualineSepPeach' },
             },
@@ -50,7 +53,7 @@ local function setup()
             },
             {
                'diagnostics',
-               color = 'LualineSurface',
+               color = 'LualineMantle',
             },
          },
          lualine_b = {},
@@ -118,7 +121,7 @@ return {
       setup()
    end,
    dependencies = {
-      'kyazdani42/nvim-web-devicons',
+      'echasnovski/mini.nvim',
       require('plugins.catppuccin'),
    },
 }

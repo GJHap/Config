@@ -44,47 +44,73 @@ end
 return {
    'mfussenegger/nvim-dap',
    lazy = true,
+   keys = {
+      {
+         '<F5>',
+         function()
+            require('dap').continue()
+         end,
+         desc = 'DAP - Continue',
+      },
+      {
+         '<F10>',
+         function()
+            require('dap').step_over()
+         end,
+         desc = 'DAP - Step Over',
+      },
+      {
+         '<F11>',
+         function()
+            require('dap').step_into()
+         end,
+         desc = 'DAP - Step Into',
+      },
+      {
+         '<Leader>db',
+         function()
+            require('dap').toggle_breakpoint()
+         end,
+         desc = 'DAP - Toggle Breakpoint',
+      },
+      {
+         '<Leader>dB',
+         function()
+            require('dap').set_breakpoint(vim.fn.input('Condition: '))
+         end,
+         desc = 'DAP - Conditional Breakpoint',
+      },
+      {
+         '<Leader>dq',
+         function()
+            require('dap').terminate()
+         end,
+         desc = 'DAP - Terminate Session',
+      },
+      {
+         '<Leader>de',
+         function()
+            require('dap').set_exception_breakpoints({ 'all' })
+         end,
+         desc = 'DAP - Enable break on exception',
+      },
+      {
+         '<Leader>dd',
+         function()
+            require('dap').set_exception_breakpoints({})
+         end,
+         desc = 'DAP - Disable break on exception',
+      },
+   },
    init = function()
-      local nnoremap = require('util').nnoremap
-      nnoremap('<F5>', function()
-         require('dap').continue()
-      end, { desc = 'DAP - Continue' })
-      nnoremap('<F10>', function()
-         require('dap').step_over()
-      end, { desc = 'DAP - Step Over' })
-      nnoremap('<F11>', function()
-         require('dap').step_into()
-      end, { desc = 'DAP - Step Into' })
-      nnoremap('<Leader>db', function()
-         require('dap').toggle_breakpoint()
-      end, { desc = 'DAP - Toggle Breakpoint' })
-      nnoremap('<Leader>dB', function()
-         require('dap').set_breakpoint(vim.fn.input('Condition: '))
-      end, { desc = 'DAP - Conditional Breakpoint' })
-      nnoremap('<Leader>dq', function()
-         require('dap').terminate()
-      end, { desc = 'DAP - Terminate Session' })
-      nnoremap('<Leader>de', function()
-         require('dap').set_exception_breakpoints({ 'all' })
-      end, { desc = 'DAP - Enable break on exception' })
-      nnoremap('<Leader>dd', function()
-         require('dap').set_exception_breakpoints({})
-      end, { desc = 'DAP - Disable break on exception' })
-
       vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'Error', linehl = '', numhl = '' })
       vim.fn.sign_define('DapBreakpointCondition', { text = '', texthl = 'Error', linehl = '', numhl = '' })
       vim.fn.sign_define('DapBreakpointRejected', { text = '', texthl = 'Error', linehl = '', numhl = '' })
    end,
    config = function()
       create_node_configuration()
-      require('nvim-dap-virtual-text')
    end,
    dependencies = {
-      {
-         'theHamsta/nvim-dap-virtual-text',
-         dependencies = {
-            require('plugins.treesitter.treesitter'),
-         },
-      },
+      require('plugins.treesitter.treesitter'),
    },
 }

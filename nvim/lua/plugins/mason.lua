@@ -1,1 +1,1 @@
-return { 'williamboman/mason.nvim', config = true }
+return { 'williamboman/mason.nvim', cmd = 'Mason', config = true }

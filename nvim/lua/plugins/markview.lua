@@ -1,7 +1,8 @@
 return {
    'OXY2DEV/markview.nvim',
+   ft = 'markdown',
    dependencies = {
       require('plugins.treesitter.treesitter'),
-      'nvim-tree/nvim-web-devicons',
+      'echasnovski/mini.nvim',
    },
 }

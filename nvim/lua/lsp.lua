@@ -1,5 +1,4 @@
 vim.lsp.enable({
-   'efm',
    'eslint',
    'gopls',
    'graphql',
@@ -11,7 +10,6 @@ vim.lsp.enable({
 
 vim.diagnostic.config({
    virtual_text = false,
-   update_in_insert = true,
    signs = {
       text = {
          [vim.diagnostic.severity.ERROR] = '',

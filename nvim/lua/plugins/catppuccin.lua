@@ -43,8 +43,7 @@ return {
                LualineSky = { fg = colors.base, bg = colors.sky },
                LualineSepSky = { fg = colors.sky, bg = 'none' },
 
-               LualineSurface = { fg = colors.text, bg = colors.surface2 },
-               LualineSepSurface = { fg = colors.surface2, bg = 'none' },
+               LualineMantle = { fg = colors.text, bg = colors.mantle },
             }
          end,
       })

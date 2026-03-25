@@ -1,14 +1,15 @@
 return {
    'pwntester/octo.nvim',
+   cmd = 'Octo',
    config = true,
    opts = {
+      picker = 'snacks',
       suppress_missing_scope = {
          projects_v2 = true,
       },
    },
    dependencies = {
       'nvim-lua/plenary.nvim',
-      require('plugins.ui.telescope'),
-      'kyazdani42/nvim-web-devicons',
+      'echasnovski/mini.nvim',
    },
 }

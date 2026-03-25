@@ -15,7 +15,15 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.swapfile = false
 vim.opt.termguicolors = true
+vim.opt.cmdheight = 0
 
 vim.g.mapleader = ' '
 
-vim.o.guifont = 'JetBrainsMono Nerd Font'
+local nnoremap = require('util').nnoremap
+local vnoremap = require('util').vnoremap
+
+nnoremap('<Leader>|', ':vsplit <CR>', { desc = 'Split Column' })
+nnoremap('<Leader>-', ':split <CR>', { desc = 'Split Row' })
+nnoremap('<Leader>cl', ':normal gcc<CR>', { desc = 'Comment Current Line' })
+vnoremap('<Leader>cl', ':normal gcc<CR>', { desc = 'Comment Range' })
+nnoremap('<Leader>hq', ':nohlsearch <CR>', { desc = 'Disable Search Highlight' })
