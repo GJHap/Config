@@ -22,12 +22,11 @@
         {
           default = pkgs.mkShell {
             buildInputs = with pkgs; [
-              efm-langserver
               go
               gopls
               lua-language-server
               nixd
-              nixfmt-rfc-style
+              nixfmt
               stylua
             ];
           };

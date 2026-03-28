@@ -16,7 +16,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
       })
 
       nnoremap('<Leader>r', vim.lsp.buf.rename, { buffer = bufnr, desc = 'Rename' })
+
       nnoremap('<Leader>ca', vim.lsp.buf.code_action, { buffer = bufnr, desc = 'Code Actions' })
+      vnoremap('<Leader>ca', vim.lsp.buf.code_action, { buffer = bufnr, desc = 'Code Actions (Range)' })
 
       nnoremap('<Leader>df', function()
          vim.diagnostic.open_float({ border = 'single' })
@@ -24,7 +26,5 @@ vim.api.nvim_create_autocmd('LspAttach', {
          buffer = bufnr,
          desc = 'Open Diagnostics',
       })
-
-      vnoremap('<Leader>ca', vim.lsp.buf.code_action, { buffer = bufnr, desc = 'Code Actions (Range)' })
    end,
 })

@@ -38,14 +38,14 @@ return {
          default = { 'lsp', 'buffer' },
       },
       completion = {
-         list = {
-            selection = {
-               preselect = true,
-               auto_insert = false,
-            },
-         },
          menu = { border = 'single' },
          documentation = { auto_show = true, window = { border = 'single' } },
+      },
+      cmdline = {
+         enabled = true,
+         completion = {
+            menu = { auto_show = true },
+         },
       },
    },
 }

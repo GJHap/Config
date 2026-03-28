@@ -1,12 +1,12 @@
-vim.lsp.enable({
-   'eslint',
-   'gopls',
-   'graphql',
-   'jsonls',
-   'lua_ls',
-   'nixd',
-   'ts_ls',
-})
+-- vim.lsp.enable({
+-- 'eslint',
+-- 'gopls',
+-- 'graphql',
+-- 'jsonls',
+-- 'lua_ls',
+-- 'nixd',
+-- 'ts_ls',
+-- })
 
 vim.diagnostic.config({
    virtual_text = false,
