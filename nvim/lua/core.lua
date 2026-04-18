@@ -2,8 +2,9 @@ vim.opt.cursorline = true
 vim.opt.expandtab = true
 vim.opt.fillchars = { fold = ' ', foldopen = '', foldclose = '' }
 vim.opt.foldcolumn = '1'
-vim.opt.foldexpr = 'v:lua.vim.lsp.foldexpr()'
 vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldlevel = 99
 vim.opt.foldtext = 'getline(v:foldstart)'
 vim.opt.mouse = 'a'
 vim.opt.number = true

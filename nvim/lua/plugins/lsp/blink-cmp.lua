@@ -1,16 +1,9 @@
 return {
    'saghen/blink.cmp',
-   lazy = true,
-   event = 'BufReadPre',
    version = '1.*',
    opts = {
       keymap = {
-         preset = 'none',
-         ['<C-Space>'] = { 'show', 'fallback' },
-         ['<C-e>'] = { 'hide', 'fallback' },
-         ['<CR>'] = { 'accept', 'fallback' },
-         ['<Tab>'] = { 'select_next', 'fallback' },
-         ['<S-Tab>'] = { 'select_prev', 'fallback' },
+         preset = 'default',
          ['<C-d>'] = {
             function(cmp)
                if cmp.is_visible() then
@@ -38,14 +31,17 @@ return {
          default = { 'lsp', 'buffer' },
       },
       completion = {
+         accept = {
+            auto_brackets = {
+               enabled = true,
+               semantic_token_resolution = { enabled = false },
+            },
+         },
          menu = { border = 'single' },
          documentation = { auto_show = true, window = { border = 'single' } },
       },
       cmdline = {
          enabled = true,
-         completion = {
-            menu = { auto_show = true },
-         },
       },
    },
 }
