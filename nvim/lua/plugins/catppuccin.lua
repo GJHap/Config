@@ -11,6 +11,10 @@ local function get_flavor()
    return flavor
 end
 
+local function set_flavor()
+   vim.cmd.colorscheme('catppuccin-' .. get_flavor())
+end
+
 return {
    'catppuccin/nvim',
    name = 'catppuccin',
@@ -21,7 +25,7 @@ return {
          group = signal_group,
          pattern = 'SIGUSR1',
          callback = function()
-            require('catppuccin').load(get_flavor())
+            set_flavor()
 
             ---@diagnostic disable-next-line: param-type-mismatch
             vim.api.nvim_exec_autocmds('User', { pattern = 'ThemeUpdated' })
@@ -48,6 +52,6 @@ return {
          end,
       })
 
-      vim.cmd.colorscheme('catppuccin-nvim')
+      set_flavor()
    end,
 }

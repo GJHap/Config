@@ -1,36 +1,25 @@
 return {
    'nvim-treesitter/nvim-treesitter',
-   lazy = true,
-   event = 'BufReadPre',
-   config = true,
-   main = 'nvim-treesitter.configs',
-   opts = {
-      auto_install = true,
-      textobjects = {
-         select = {
-            enable = true,
-            lookahead = true,
-            keymaps = {
-               ['aa'] = '@attribute.outer',
-               ['ia'] = '@attribute.inner',
-               ['ab'] = '@block.outer',
-               ['ib'] = '@block.inner',
-               ['aC'] = '@class.outer',
-               ['iC'] = '@class.inner',
-               ['ac'] = '@conditional.outer',
-               ['ic'] = '@conditional.inner',
-               ['af'] = '@function.outer',
-               ['if'] = '@function.inner',
-               ['al'] = '@loop.outer',
-               ['il'] = '@loop.inner',
-               ['ap'] = '@parameter.outer',
-               ['ip'] = '@parameter.inner',
-            },
-         },
-      },
-   },
-   dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-   },
+   lazy = false,
    build = ':TSUpdate',
+   init = function()
+      vim.api.nvim_create_autocmd('FileType', {
+         callback = function(args)
+            local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype)
+            if not lang then
+               return
+            end
+
+            local config = require('nvim-treesitter.config')
+            local installed = config.get_installed('parsers')
+            local available = config.get_available()
+
+            if not vim.tbl_contains(installed, lang) and vim.tbl_contains(available, lang) then
+               require('nvim-treesitter').install({ lang })
+            end
+
+            pcall(vim.treesitter.start, args.buf, lang)
+         end,
+      })
+   end,
 }

@@ -2,7 +2,5 @@ return {
    'HiPhish/rainbow-delimiters.nvim',
    lazy = true,
    event = 'BufReadPre',
-   dependencies = {
-      require('plugins.treesitter.treesitter'),
-   },
+   dependencies = { 'nvim-treesitter/nvim-treesitter' },
 }

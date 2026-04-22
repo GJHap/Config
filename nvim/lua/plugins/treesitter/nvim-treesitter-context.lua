@@ -2,7 +2,5 @@ return {
    'nvim-treesitter/nvim-treesitter-context',
    event = 'BufReadPre',
    config = true,
-   dependencies = {
-      require('plugins.treesitter.treesitter'),
-   },
+   dependencies = { 'nvim-treesitter/nvim-treesitter' },
 }
