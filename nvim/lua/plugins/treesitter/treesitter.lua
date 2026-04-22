@@ -18,7 +18,7 @@ return {
                require('nvim-treesitter').install({ lang })
             end
 
-            pcall(vim.treesitter.start, args.buf, lang)
+            pcall(vim.treesitter.start)
          end,
       })
    end,
