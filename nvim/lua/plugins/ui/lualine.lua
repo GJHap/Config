@@ -9,7 +9,7 @@ local function setup()
          local buffer = vim.api.nvim_win_get_buf(window)
          local ft = vim.api.nvim_get_option_value('filetype', { buf = buffer })
 
-         return ft:match('^oil$') or ft:match('^fugitive$') or ft:match('^fugitiveblame$') or ft:match('^help$')
+         return ft:match('^oil$') or ft:match('^help$')
       end
 
       local windows = vim.api.nvim_tabpage_list_wins(vim.api.nvim_get_current_tabpage())

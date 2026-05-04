@@ -101,19 +101,11 @@ return {
          end,
          desc = 'Find References',
       },
-      {
-         '<Leader>gB',
-         function()
-            Snacks.gitbrowse()
-         end,
-         desc = 'Git Browse',
-      },
    },
    opts = {
       input = {},
       notifier = {},
       picker = {},
       indent = {},
-      gitbrowse = {},
    },
 }

@@ -7,6 +7,7 @@
     gh
     git
     jq
+    lazygit
     lsd
     ripgrep
     unzip
