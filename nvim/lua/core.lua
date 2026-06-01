@@ -25,9 +25,14 @@ local vnoremap = require('util').vnoremap
 
 nnoremap('<Leader>|', ':vsplit <CR>', { desc = 'Split Column' })
 nnoremap('<Leader>-', ':split <CR>', { desc = 'Split Row' })
+
 nnoremap('<Leader>cl', ':normal gcc<CR>', { desc = 'Comment Current Line' })
 vnoremap('<Leader>cl', ':normal gcc<CR>', { desc = 'Comment Range' })
+
 nnoremap('<Leader>hq', ':nohlsearch <CR>', { desc = 'Disable Search Highlight' })
+
 nnoremap(']t', ':tabnext <CR>', { desc = 'Next Tab' })
 nnoremap('[t', ':tabprev <CR>', { desc = 'Previous Tab' })
+
 nnoremap('<leader>crp', ':let @+ = expand("%:~:.") <CR>', { desc = 'Copy relative path to clipboard' })
+nnoremap('<leader>cap', ':let @+ = expand("%:p") <CR>', { desc = 'Copy absolute path to clipboard' })
