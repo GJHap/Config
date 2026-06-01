@@ -1,4 +1,0 @@
-cmd touch $touch $*
-
-map D delete
-map a push :touch<space>

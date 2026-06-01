@@ -2,7 +2,6 @@
 {
   imports = [
     ./direnv.nix
-    ./lf.nix
     ./nvim.nix
     ./packages.nix
     ./tmux.nix

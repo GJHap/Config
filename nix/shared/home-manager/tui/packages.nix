@@ -11,6 +11,7 @@
     lsd
     ripgrep
     unzip
+    yazi
     zip
     zoxide
   ];
